@@ -1,44 +1,33 @@
-// TodoItem.tsx
-
-import React from "react";
-import styles from "./TodoList.module.scss";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import styles from './TodoItem.module.scss';
+import { Todo } from './TodoList';
 
 interface TodoItemProps {
-  todo: {
-    id: number;
-    title: string;
-    completed: boolean;
-  };
-  onDeleteTodo: (id: number) => void;
+  todo: Todo;
   onToggleComplete: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({
-  todo,
-  onDeleteTodo,
-  onToggleComplete,
-}) => {
-  const handleDelete = () => {
-    onDeleteTodo && onDeleteTodo(todo.id);
+const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggleComplete, onDelete }) => {
+  const handleToggleComplete = () => {
+    onToggleComplete(todo.id);
   };
 
-  const handleToggleComplete = () => {
-    onToggleComplete && onToggleComplete(todo.id);
+  const handleDeleteClick = () => {
+    onDelete(todo.id);
   };
 
   return (
-    <li
-      className={`${styles["todo-item"]} ${todo.completed ? styles.completed : ""
-        }`}
-    >
-      <span>{todo.title}</span>
-      <div>
-        <button onClick={handleToggleComplete}>
-          {todo.completed ? "Incomplete" : "Complete"}
-        </button>
-        <button onClick={handleDelete}>Delete</button>
+    <div className={styles.todoItem}>
+      <div className={`${styles.todoText} ${todo.completed ? styles.completed : ''}`} onClick={handleToggleComplete}>
+        {todo.text}
       </div>
-    </li>
+      <div className={styles.deleteButton} onClick={handleDeleteClick}>
+        <FontAwesomeIcon icon={faTrash} />
+      </div>
+    </div>
   );
 };
 

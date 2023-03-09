@@ -1,0 +1,32 @@
+.todoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  cursor: pointer;
+
+  &.completed .todoText {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+
+    .completed {
+      text-decoration: line-through;
+    }
+
+  .todoText {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .deleteButton {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}

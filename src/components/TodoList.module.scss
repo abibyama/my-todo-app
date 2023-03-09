@@ -1,29 +1,17 @@
-/* TodoList.module.scss */
-
-.todo-list {
-  list-style: none;
+.todoList {
+  margin: 2rem auto;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+  width: 80%;
+  max-width: 600px;
+  list-style-type: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.todo-item.completed {
-  text-decoration: line-through;
+.todoListTitle {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #333;
 }

@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TodoList from "./components/TodoList";
+import TodoList, { Todo } from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
 import "./App.css";
-
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
 
 
 const App: React.FC = () => {
@@ -18,7 +12,7 @@ const App: React.FC = () => {
   const handleAddTodo = (title: string) => {
     const newTodo: Todo = {
       id: Math.floor(Math.random() * 100000),
-      title,
+      text: title,
       completed: false,
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
@@ -33,10 +27,8 @@ const App: React.FC = () => {
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
-    )
-  }
-
-
+    );
+  };
 
   return (
     <div>
@@ -44,7 +36,7 @@ const App: React.FC = () => {
         <h1>To Do List</h1>
       </header>
       <AddTodo onAddTodo={handleAddTodo} />
-      <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} onToggleComplete={handleToggleComplete} />
+      <TodoList todos={todos} onToggleComplete={handleToggleComplete} onDeleteTodo={handleDeleteTodo} />
     </div>
   );
 };

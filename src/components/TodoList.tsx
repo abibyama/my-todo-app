@@ -1,12 +1,9 @@
-// TodoList.tsx
+import React from 'react';
+import TodoItem from './TodoItem';
 
-import React from "react";
-import TodoItem from "./TodoItem";
-import styles from "./TodoList.module.scss";
-
-interface Todo {
+export interface Todo {
   id: number;
-  title: string;
+  text: string;
   completed: boolean;
 }
 
@@ -16,22 +13,21 @@ interface TodoListProps {
   onToggleComplete: (id: number) => void;
 }
 
-const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  onDeleteTodo,
-  onToggleComplete,
-}) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo, onToggleComplete }) => {
+  const handleDeleteTodo = (id: number) => {
+    onDeleteTodo(id);
+  };
+
+  const handleToggleComplete = (id: number) => {
+    onToggleComplete(id);
+  };
+
   return (
-    <ul className={styles["todo-list"]}>
+    <div>
       {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onDeleteTodo={onDeleteTodo}
-          onToggleComplete={onToggleComplete}
-        />
+        <TodoItem key={todo.id} todo={todo} onDelete={handleDeleteTodo} onToggleComplete={handleToggleComplete} />
       ))}
-    </ul>
+    </div>
   );
 };
 
